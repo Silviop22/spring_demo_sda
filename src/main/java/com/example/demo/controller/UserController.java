@@ -2,13 +2,15 @@ package com.example.demo.controller;
 
 import com.example.demo.model.ErrorResponse;
 import com.example.demo.model.User;
+import com.example.demo.model.UserDto;
+import com.example.demo.model.UserExtendedDto;
 import com.example.demo.service.UserService;
-import com.sun.net.httpserver.Headers;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,10 +18,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.function.ServerRequest;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/users")
@@ -44,17 +47,12 @@ public class UserController {
     }
     
     @GetMapping
-    public ResponseEntity<Object> getList() {
-        try {
-            return ResponseEntity.ok(service.getList());
-        } catch (Exception e) {
-            HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
-            return new ResponseEntity<>(new ErrorResponse("Ops, we are having issues.", status.value()), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public ResponseEntity<Set<UserDto>> getList() {
+        return ResponseEntity.ok(service.getList());
     }
 
     @PostMapping
-    public ResponseEntity<Object> createUser(@RequestBody User user) {
+    public ResponseEntity<Object> createUser(@Valid @RequestBody UserExtendedDto user) {
         try {
             User result = service.createUser(user);
             URI location = ServletUriComponentsBuilder

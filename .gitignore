@@ -32,11 +32,9 @@ src/main/resources/application-dev.properties
 
 ### VS Code ###
 .vscode/
-
 src/main/resources/application-dev.properties
 system.properties
-.mvn/wrapper/maven-wrapper.jar
-.mvn/wrapper/maven-wrapper.properties
+.mvn/
 Procfile.txt
 mvnw
 mvnw.cmd
