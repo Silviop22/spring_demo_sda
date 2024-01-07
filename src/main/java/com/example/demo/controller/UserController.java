@@ -28,11 +28,11 @@ import java.util.Set;
 @RequestMapping("/users")
 public class UserController {
     private final UserService service;
-
+    
     public UserController(UserService service) {
         this.service = service;
     }
-
+    
     @GetMapping("/{id}")
     public ResponseEntity<Object> getById(@PathVariable Long id) {
         try {
@@ -50,28 +50,18 @@ public class UserController {
     public ResponseEntity<Set<UserDto>> getList() {
         return ResponseEntity.ok(service.getList());
     }
-
+    
     @PostMapping
     public ResponseEntity<Object> createUser(@Valid @RequestBody UserExtendedDto user) {
-        try {
-            User result = service.createUser(user);
-            URI location = ServletUriComponentsBuilder
-                                   .fromCurrentRequest()
-                                   .path("/{id}")
-                                   .buildAndExpand(result.getId())
-                                   .toUri();
-            return ResponseEntity.created(location).build();
-        }
-        catch (EntityExistsException e) {
-            HttpStatus status = HttpStatus.CONFLICT;
-            return new ResponseEntity<>(new ErrorResponse(e.getMessage(), status.value()), HttpStatus.CONFLICT);
-        }
-        catch (Exception e) {
-            HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
-            return new ResponseEntity<>(new ErrorResponse("Ops, we are having issues.", status.value()), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        User result = service.createUser(user);
+        URI location = ServletUriComponentsBuilder
+                               .fromCurrentRequest()
+                               .path("/{id}")
+                               .buildAndExpand(result.getId())
+                               .toUri();
+        return ResponseEntity.created(location).build();
     }
-
+    
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteUser(@PathVariable Long id) {
         try {
