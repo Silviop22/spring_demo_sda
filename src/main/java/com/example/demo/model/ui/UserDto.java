@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.example.demo.model.ui;
 
 import lombok.Builder;
 import lombok.Getter;

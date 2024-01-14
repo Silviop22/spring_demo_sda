@@ -1,5 +1,6 @@
-package com.example.demo.model;
+package com.example.demo.model.ui;
 
+import com.example.demo.model.Role;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;

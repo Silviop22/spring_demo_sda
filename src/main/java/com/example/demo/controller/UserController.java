@@ -2,8 +2,8 @@ package com.example.demo.controller;
 
 import com.example.demo.model.ErrorResponse;
 import com.example.demo.model.User;
-import com.example.demo.model.UserDto;
-import com.example.demo.model.UserExtendedDto;
+import com.example.demo.model.ui.UserDto;
+import com.example.demo.model.ui.UserExtendedDto;
 import com.example.demo.service.UserService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
@@ -31,13 +31,8 @@ public class UserController {
     }
     
     @GetMapping("/{id}")
-    public ResponseEntity<Object> getById(@PathVariable Long id) {
-        try {
-            return ResponseEntity.ok(service.getUserById(id));
-        } catch (EntityNotFoundException e) {
-            HttpStatus status = HttpStatus.NOT_FOUND;
-            return new ResponseEntity<>(new ErrorResponse(e.getMessage(), status.value()), HttpStatus.NOT_FOUND);
-        }
+    public ResponseEntity<UserExtendedDto> getById(@PathVariable Long id) {
+        return ResponseEntity.ok(service.getUserById(id));
     }
     
     @GetMapping
@@ -58,11 +53,7 @@ public class UserController {
     
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteUser(@PathVariable Long id) {
-        try {
             service.delete(id);
-            return ResponseEntity.noContent().build();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+            return ResponseEntity.ok().build();
     }
 }

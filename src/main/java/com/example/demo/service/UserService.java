@@ -1,10 +1,10 @@
 package com.example.demo.service;
 
 import com.example.demo.model.User;
-import com.example.demo.model.UserDto;
-import com.example.demo.model.UserExtendedDto;
+import com.example.demo.model.ui.UserDto;
+import com.example.demo.model.ui.UserExtendedDto;
 import com.example.demo.repository.UserRepository;
-import com.example.demo.shared.Mapper;
+import com.example.demo.shared.UserMapper;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository repository;
-    private final Mapper mapper;
+    private final UserMapper mapper;
     
     public UserExtendedDto getUserById(Long id) {
         User user = findExistingUser(id);
