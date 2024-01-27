@@ -31,7 +31,6 @@ public class UserMapper implements Mapper<UserDto, UserExtendedDto, User> {
     }
     
     @Override
-    
     public User toEntity(UserExtendedDto dto) {
         return new User().builder()
                    .id(dto.getId())
