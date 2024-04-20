@@ -1,0 +1,14 @@
+server:
+#  port:
+spring:
+  application:
+    name: spring-demo
+  datasource:
+#    url:
+#    username:
+#    password:
+#    driver-class-name:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
