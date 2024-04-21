@@ -1,4 +1,4 @@
-package al.sdacademy.springdemo.util;
+package al.sdacademy.springdemo.commons.util;
 
 
 import org.springframework.beans.BeanUtils;

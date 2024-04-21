@@ -37,7 +37,7 @@ public class UserController {
     }
     
     @PostMapping
-    public ResponseEntity<UserDto> saveUser(@RequestBody UserDto userDto) {
+    public ResponseEntity<Object> saveUser(@RequestBody UserDto userDto) {
         URI location = URI.create("/users/" + userService.save(userDto));
         return ResponseEntity.created(location).build();
     }

@@ -1,110 +1,35 @@
 package al.sdacademy.springdemo.item.model;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class ItemDto {
     private Long id;
+    @NotBlank(message = "Name is mandatory",
+            groups = ItemCreationValidation.class)
     private String name;
+    @NotBlank(message = "Description is mandatory",
+            groups = ItemCreationValidation.class)
     private String description;
+    @NotNull(message = "Unit price is mandatory",
+            groups = ItemCreationValidation.class)
     private BigDecimal unitPrice;
+    @NotNull(message = "Quantity is mandatory",
+            groups = ItemCreationValidation.class)
     private Integer quantity;
+    @NotBlank(message = "Image URL is mandatory",
+            groups = ItemCreationValidation.class)
     private String imageUrl;
-    
-    public Long getId() {
-        return id;
-    }
-    
-    public void setId(Long id) {
-        this.id = id;
-    }
-    
-    public String getName() {
-        return name;
-    }
-    
-    public void setName(String name) {
-        this.name = name;
-    }
-    
-    public String getDescription() {
-        return description;
-    }
-    
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    
-    public BigDecimal getUnitPrice() {
-        return unitPrice;
-    }
-    
-    public void setUnitPrice(BigDecimal unitPrice) {
-        this.unitPrice = unitPrice;
-    }
-    
-    public Integer getQuantity() {
-        return quantity;
-    }
-    
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-    
-    public String getImageUrl() {
-        return imageUrl;
-    }
-    
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-    
-    public static class Builder {
-        private Long id;
-        private String name;
-        private String description;
-        private BigDecimal unitPrice;
-        private Integer quantity;
-        private String imageUrl;
-        
-        public Builder id(Long id) {
-            this.id = id;
-            return this;
-        }
-        
-        public Builder name(String name) {
-            this.name = name;
-            return this;
-        }
-        
-        public Builder description(String description) {
-            this.description = description;
-            return this;
-        }
-        
-        public Builder unitPrice(BigDecimal unitPrice) {
-            this.unitPrice = unitPrice;
-            return this;
-        }
-        
-        public Builder quantity(Integer quantity) {
-            this.quantity = quantity;
-            return this;
-        }
-        
-        public Builder imageUrl(String imageUrl) {
-            this.imageUrl = imageUrl;
-            return this;
-        }
-        
-        public ItemDto build() {
-            ItemDto itemDto = new ItemDto();
-            itemDto.setId(id);
-            itemDto.setName(name);
-            itemDto.setDescription(description);
-            itemDto.setUnitPrice(unitPrice);
-            itemDto.setQuantity(quantity);
-            itemDto.setImageUrl(imageUrl);
-            return itemDto;
-        }
-    }
 }

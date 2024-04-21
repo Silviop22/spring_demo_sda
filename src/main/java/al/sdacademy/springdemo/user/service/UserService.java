@@ -1,10 +1,10 @@
 package al.sdacademy.springdemo.user.service;
 
 import al.sdacademy.springdemo.user.mapper.UserMapper;
-import al.sdacademy.springdemo.user.model.User;
 import al.sdacademy.springdemo.user.model.UserDto;
+import al.sdacademy.springdemo.user.model.User;
 import al.sdacademy.springdemo.user.repository.UserRepository;
-import al.sdacademy.springdemo.util.ObjectPatcher;
+import al.sdacademy.springdemo.commons.util.ObjectPatcher;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

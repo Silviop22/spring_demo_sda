@@ -1,12 +1,13 @@
 package al.sdacademy.springdemo.item.model;
 
-import al.sdacademy.springdemo.order.model.Order;
+import al.sdacademy.springdemo.order.model.OrderItem;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -40,6 +41,6 @@ public class Item {
     @Column(name = "image_url", nullable = false)
     private String imageUrl;
     
-    @ManyToMany(mappedBy = "items")
-    private Set<Order> orders;
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
+    private Set<OrderItem> orderItems;
 }

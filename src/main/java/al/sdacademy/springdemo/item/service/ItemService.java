@@ -4,7 +4,7 @@ import al.sdacademy.springdemo.item.mapper.ItemMapper;
 import al.sdacademy.springdemo.item.model.Item;
 import al.sdacademy.springdemo.item.model.ItemDto;
 import al.sdacademy.springdemo.item.repository.ItemRepository;
-import al.sdacademy.springdemo.util.ObjectPatcher;
+import al.sdacademy.springdemo.commons.util.ObjectPatcher;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -52,8 +52,8 @@ public class ItemService {
     @Transactional
     public void update(ItemDto itemDto, Long id) {
         Item existing = getExistingEntity(id);
-        Item updateCandiate = itemMapper.toEntity(itemDto);
-        ObjectPatcher.patchObject(updateCandiate, existing);
+        Item updateCandidate = itemMapper.toEntity(itemDto);
+        ObjectPatcher.patchObject(updateCandidate, existing);
         itemRepository.save(existing);
     }
     

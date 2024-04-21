@@ -2,14 +2,14 @@ package al.sdacademy.springdemo.item.mapper;
 
 import al.sdacademy.springdemo.item.model.Item;
 import al.sdacademy.springdemo.item.model.ItemDto;
-import al.sdacademy.springdemo.util.Mapper;
+import al.sdacademy.springdemo.commons.util.Mapper;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ItemMapper implements Mapper<Item, ItemDto> {
     @Override
     public ItemDto toDto(Item item) {
-        return new ItemDto.Builder()
+        return ItemDto.builder()
                        .id(item.getId())
                        .name(item.getName())
                        .description(item.getDescription())
